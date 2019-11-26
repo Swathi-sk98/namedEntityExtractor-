@@ -1,7 +1,10 @@
 Named Entity Extractor.
 
 INSTALLING DEPENDENCIES
+
+
 ·       Using pip command install spacy and all the other dependencies.
+
 ·       To install Flask , create virtual environment using virtualenv command.
 ·       And then in the virtual environment, activate Scripts using <env>/Scripts/activate. Inside virtual environment using         pip ,install flask. And then copy the file containing the code inside <env>.
 ·       Copy the html file inside the templates folder.
