@@ -15,7 +15,6 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"]= "Entities"
 app.config["MONGO_URI"] = "mongodb://localhost:27017/Entities"
 
-
 #Celery configuration
 app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379'
 app.config['RESULT_BACKEND'] = 'redis://localhost:6379'
@@ -55,7 +54,7 @@ def extract_entity(self,input_text,flag):
               
         flag = True
         
-    return doc
+    return ent
 
 
 @app.route('/')
@@ -67,11 +66,15 @@ def store_content():
     if request.method == 'POST':
         rawtext = request.form['rawtext']
         processed = False
-        task = extract_entity.delay(rawtext,processed)                           
+        task = extract_entity.delay(rawtext,processed)   
+
+        List = []       
                            
-        return render_template("index.html", celery = task )
-                                                                                     
+        for dat in mongo.db.namedEntities.find():
+            List.append(dat)
+                    
+        return render_template('index.html',results = List)
+
+                                                                                  
 if __name__ == '__main__':
     app.run(debug=True)
-                                                                                         
-
