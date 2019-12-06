@@ -68,12 +68,18 @@ def store_content():
         processed = False
         task = extract_entity.delay(rawtext,processed)   
 
-        List = []       
-                           
-        for dat in mongo.db.namedEntities.find():
-            List.append(dat)
-                    
-        return render_template('index.html',results = List)
+               
+        return render_template('index.html',celery = task)
+
+@app.route('/view_entities', methods = ['GET'])
+def get_entities():
+    namedEntities = mongo.db.namedEntities
+    Lists = []
+    List = namedEntities.find()
+    for j in List:
+        j.pop('_id')
+        Lists.append(j)
+    return jsonify(Lists)
 
                                                                                   
 if __name__ == '__main__':
