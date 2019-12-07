@@ -33,7 +33,7 @@ def extract_entity(self,input_text,flag):
     self.input_text = input_text
     self.flag = flag
     if flag == False:
-        doc = nlp(input_text)
+        doc = nlp(input_text) #extracts entities
         ent = []
 
         for x in doc.ents:
@@ -46,6 +46,7 @@ def extract_entity(self,input_text,flag):
              
         namedEntities = mongo.db.namedEntities
         
+        #updates in mongoDB
         namedEntities.update(
             {'text':input_text},
             dictionary,
@@ -57,7 +58,7 @@ def extract_entity(self,input_text,flag):
     return doc
 
 
-@app.route('/')
+@app.route('/') #to check whether the application is running correctly on port
 def index():
     return render_template("index.html")
 
@@ -71,7 +72,7 @@ def store_content():
                
         return render_template("index.html",celery = task)
 
-@app.route('/view_entities', methods = ['GET'])
+@app.route('/view_entities', methods = ['GET'])  #viewing all contents of namedEntities
 def get_entities():
     namedEntities = mongo.db.namedEntities
     Lists = []
