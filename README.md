@@ -38,3 +38,4 @@ INSTALLING DEPENDENCIES
 · Type the INPUT .And click submit.
 
 · Command prompt #5: MONGODB: Check for the output (stored entities) in mongodb.
+. To view the contents in the web page, change the URL to /view_contents.
