@@ -43,16 +43,13 @@ def extract_entity(self,input_text,flag):
             'text':input_text,
             'entities':ent
             }]
-             
+
+        #updates to mongoDB     
         namedEntities = mongo.db.namedEntities
-        
-        #updates in mongoDB
-        namedEntities.update(
-            {'text':input_text},
-            dictionary,
-            True
-            )
-             
+        dictionary_add = {'name': dictionary}
+        if namedEntities.find({'name':dictionary}).count()==0:
+            namedEntities.insert(dictionary) 
+    
         flag = True
         
     return doc
