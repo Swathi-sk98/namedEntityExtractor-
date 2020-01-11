@@ -77,7 +77,7 @@ def get_entities():
     for j in List:
         j.pop('_id')
         Lists.append(j)
-    return jsonify(Lists)
+    return render_template("listing.html",results = Lists)
 
                                                                                   
 if __name__ == '__main__':
