@@ -3,17 +3,13 @@ Named Entity Extractor.
 INSTALLING DEPENDENCIES
 
 
-·       Using pip command install spacy and all the other dependencies.
+·       cd to the directory where requirements.txt is located
 
-·       To install Flask , create virtual environment using virtualenv command.
+·       activate your virtualenv.
 
-·       And then in the virtual environment, activate Scripts using <env>/Scripts/activate. Inside virtual environment using         pip ,install flask. And then copy the file containing the code inside <env>.
+·       run:pip install -r requirements.txt in your shell.
   
-·       Copy the html file inside the templates folder.
-
 ·       Install mongoDB in your system.
-
-·       And then install celery using pip command
 
 ·       Install redis which is compatible to your system.
 
