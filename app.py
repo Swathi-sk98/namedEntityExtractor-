@@ -11,7 +11,7 @@ from collections import Counter
 import en_core_web_sm
 nlp = spacy.load('en_core_web_sm')
 
-#to add new entity types
+#to add new entities.
 custom_entities = ['Bootstrap','Oracle','Python','MySQL','Django']
 p = nlp.get_pipe('ner')
 for ent in custom_entities:
