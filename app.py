@@ -11,18 +11,6 @@ from collections import Counter
 import en_core_web_sm
 nlp = spacy.load('en_core_web_sm')
 
-#to add new entities.
-custom_entities = ['Bootstrap','Oracle','Python','MySQL','Django']
-p = nlp.get_pipe('ner')
-for ent in custom_entities:
-    if 'extra_labels' in p.cfg and ent in p.cfg['extra_labels']:
-        pass
-    else:
-        p.add_label(ent)
-
-p.cfg['extra_labels'] = custom_entities
-
-#vocab = Vocab(strings=['bootstrap','oracle','python','mysql','django'])
 app = Flask(__name__)
 
 #mongoDB configuration
