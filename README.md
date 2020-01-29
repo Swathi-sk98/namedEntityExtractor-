@@ -32,4 +32,6 @@ INSTALLING DEPENDENCIES
 · Type the INPUT .And click submit.
 
 . To view the contents in the web page, change the URL to  /view_entities.
+
+
 . To run the code in POSTman got to branch postman.
