@@ -65,16 +65,9 @@ def extract_entity(self,input_text,flag):
     return e
 
 
-@app.route('/test',methods=['GET','POST'])
+@app.route('/')
 def index():
-    if request.method == 'POST':
-        value = request.json['key']
-        doc = nlp(value)
-        ent = []
-        for x in doc.ents:
-            ent.append(x.text)
-        return jsonify({"key":ent})
-
+    return render_template("index.html")
 
 @app.route('/store_content',methods = ["POST"])
 def store_content():
