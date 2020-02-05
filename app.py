@@ -5,8 +5,13 @@ from flask_pymongo import PyMongo
 from pymongo import MongoClient
 from celery import Celery, current_app
 from spacy import displacy
+from spacy.matcher import Matcher
 import en_core_web_sm
 nlp = spacy.load('en_core_web_sm')
+
+m_tool = Matcher(nlp.vocab)
+p1 = [{'LOWER':'bootstrap'},{'LOWER':'oracle'},{'LOWER':'python'},{'LOWER':'mysql'},{'LOWER':'django'},{'LOWER':'web development'},{'LOWER':'unix'},{'LOWER':'sql'},{'LOWER':'selenium'},{'LOWER':'sap'},{'LOWER':'redis'},{'LOWER':'mongodb'},{'LOWER':'html'},{'LOWER':'flask'},{'LOWER':'java'},{'LOWER':'celery'}]
+m_tool.add('Stack', None,p1)
 
 app = Flask(__name__)
 
@@ -43,6 +48,12 @@ def extract_entity(self,input_text,flag):
         doc = nlp(input_text)
         ent = []
 
+        phrase_matches = m_tool(doc)
+
+        for match_id,start,end in phrase_matches:
+            span = doc[start:end]
+            ent.append(span.text)
+
         for x in doc.ents:
             ent.append(x.text)
         
@@ -65,9 +76,23 @@ def extract_entity(self,input_text,flag):
     return e
 
 
-@app.route('/')
+@app.route('/test',methods=['GET','POST'])
 def index():
-    return render_template("index.html")
+    if request.method == 'POST':
+        value = request.json['key']
+        doc = nlp(value)
+        ent = []
+
+        stack_matches = m_tool(doc)
+
+        for match_id,start,end in stack_matches:
+            span = doc[start:end]
+            ent.append(span.text)
+
+        for x in doc.ents:
+            ent.append(x.text)
+        return jsonify({"key":ent})
+
 
 @app.route('/store_content',methods = ["POST"])
 def store_content():
