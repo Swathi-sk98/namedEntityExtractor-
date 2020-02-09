@@ -11,27 +11,23 @@ INSTALLING DEPENDENCIES
   
 ·       Install mongoDB in your system.
 
-·       Install redis which is compatible to your system.
+·       Install redis which is compatible to your system. Run redis as a service. Type 'sudo systemctl start redis'
 
 ·       Keep all the installed things ready.
 
   
   RUNNING THE CODE
+
+· Command prompt #1:CELERY: Change directory to the virtual environment which contains the code. Type 'celery worker -A         app.celery --loglevel = info'. Minimize
+
+· Command prompt #2:CODE: Change directory to the folder containing the code. Run it using 'python app.py'.Minimize.
+
+  POSTMAN COLLECTION
   
-  
-· You need four processes running in order to run the application.
+. POSTman collections link: https://www.getpostman.com/collections/454216de7f3420bf648a
 
-· Command prompt #1: REDIS: change directory to redis cotaining folder. Type 'src/redis-server'. Minimize.
+  METHODS 
 
-. Command prompt #2: REDIS: change directory to redis containing folder. Type 'src/redis-cli'. Minimize.
-
-· Command prompt #3:CELERY: Change directory to the virtual environment which contains the code. Type 'celery worker -A         app.celery --loglevel = info'. Minimize
-
-· Command prompt #4:CODE: Change directory to the folder containing the code. Run it using 'python app.py'.Minimize.
-
-· Copy the URL and paste it in browser to open html form.
-
-· Type the INPUT .And click submit.
-
-· Command prompt #5: MONGODB: Check for the output (stored entities) in mongodb.
-. To view the contents in the web page, change the URL to  /view_entities.
+.  /test : Take the JSON input and give the extracted entities as JSON output.
+.  /extract : Take the input as form data, start the background task and give the extracted entities in JSON format.
+.  /view : Give a listing of previous extractions in JSON format.
