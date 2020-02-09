@@ -76,6 +76,31 @@ def index():
         return jsonify({"key":ent})
 
 
+@app.route('/extract',methods=['POST'])
+def extract():
+    rawtext = request.form['rawtext']
+    processed = False
+    task = extract_entity.delay(rawtext,processed)
+    print(task)
+    r = task.wait()
+        
+    return jsonify({'key':r})
+
+
+@app.route('/view',methods=['GET'])
+def view():
+    namedEntities = mongo.db.namedEntities
+    Lists = []
+    List = namedEntities.find()
+    for j in List:
+        j.pop('_id')
+        Lists.append(j)
+    return jsonify({'key':Lists})
+    
+
+    
+
+
 @app.route('/store_content',methods = ["POST"])
 def store_content():
     if request.method == 'POST':
