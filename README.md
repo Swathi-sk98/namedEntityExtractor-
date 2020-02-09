@@ -29,5 +29,7 @@ INSTALLING DEPENDENCIES
   METHODS 
 
 .  /test : Take the JSON input and give the extracted entities as JSON output.
+
 .  /extract : Take the input as form data, start the background task and give the extracted entities in JSON format.
+
 .  /view : Give a listing of previous extractions in JSON format.
