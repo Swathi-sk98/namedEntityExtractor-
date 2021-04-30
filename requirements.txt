@@ -39,7 +39,7 @@ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.0
 srsly==0.2.0
 thinc==7.3.1
 tqdm==4.39.0
-urllib3==1.25.7
+urllib3==1.25.8
 virtualenv==15.0.1
 wasabi==0.4.0
 Werkzeug==0.16.0
