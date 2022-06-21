@@ -22,7 +22,7 @@ MarkupSafe==1.1.1
 more-itertools==5.0.0
 murmurhash==1.0.2
 nltk==3.4.5
-numpy==1.16.5
+numpy==1.22.0
 pathlib==1.0.1
 pathlib2==2.3.5
 plac==1.1.3
